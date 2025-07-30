@@ -20,11 +20,7 @@ class UserService:
             raise HTTPException(status_code=400, detail="Email already registered")
 
         hashed_pw = hash_password(user_data.password)
-        new_user = User(
-            email=user_data.email,
-            full_name=user_data.full_name,
-            hashed_password=hashed_pw  # ✅ FIXED: matches your model
-        )
+        new_user = User(email=user_data.email, full_name=user_data.full_name, password=hashed_pw)
         db.add(new_user)
         db.commit()
         db.refresh(new_user)
@@ -33,7 +29,7 @@ class UserService:
     @staticmethod
     def authenticate_user(db: Session, email: str, password: str) -> User:
         user = db.query(User).filter(User.email == email).first()
-        if not user or not verify_password(password, user.hashed_password):  # ✅ FIXED
+        if not user or not verify_password(password, user.password):
             raise HTTPException(
                 status_code=status.HTTP_401_UNAUTHORIZED,
                 detail="Invalid email or password",
