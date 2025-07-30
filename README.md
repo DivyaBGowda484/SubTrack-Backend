@@ -115,3 +115,23 @@ docker-compose up --build
 - 📱 Mobile app integration (Android/iOS)  
 - 🧾 OCR support for PDF bank statements  
 - 💬 Reminders via WhatsApp and Telegram
+
+# SubTrack Deployment Infrastructure
+
+This folder contains deployment and infrastructure configuration for SubTrack.
+
+## Services
+- **backend**: FastAPI server using Gunicorn + Uvicorn workers
+- **frontend**: React app served via Vite during development or static build in production
+- **db**: PostgreSQL database
+- **redis**: Redis instance for caching and Celery
+- **nginx**: Reverse proxy with SSL via Let's Encrypt
+- **certbot**: Certificate renewal setup
+- **celery**: Background worker process managed by supervisord or PM2
+
+## Usage
+
+### Development
+```bash
+cd infra
+docker-compose up --build
