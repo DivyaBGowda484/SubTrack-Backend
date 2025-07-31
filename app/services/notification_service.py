@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from app.models.notification_model import Notification
+from app.db.models.notification import Notification
 
 class NotificationService:
     @staticmethod

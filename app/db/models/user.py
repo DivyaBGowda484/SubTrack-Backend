@@ -1,9 +1,17 @@
 from fastapi import HTTPException, status
 from sqlalchemy.orm import Session
-from app.models.user import User
-from app.schemas.user_schemas import UserCreate
+from app.schemas.user import UserCreate
 from app.core.security import hash_password, verify_password
+from sqlalchemy import Column, Integer, String
+from app.db.base import Base
 
+class User(Base):
+    __tablename__ = "users"
+
+    id = Column(Integer, primary_key=True, index=True)
+    email = Column(String, unique=True, index=True, nullable=False)
+    full_name = Column(String, nullable=True)
+    hashed_password = Column(String, nullable=False)
 
 class UserService:
     @staticmethod

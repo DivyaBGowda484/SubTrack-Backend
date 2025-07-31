@@ -3,6 +3,10 @@ from app.db.models.subscription import Subscription
 from app.schemas.subscription import SubscriptionCreate, SubscriptionUpdate
 
 
+class SubscriptionService:
+    pass
+
+
 def create_subscription(db: Session, subscription: SubscriptionCreate, user_id: int):
     db_subscription = Subscription(**subscription.dict(), user_id=user_id)
     db.add(db_subscription)

@@ -4,7 +4,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
 from app.db.session import get_db  # Correct import for the DB session
-from app.schemas.expense_schemas import ExpenseCreate, ExpenseOut
+from app.schemas.expense import ExpenseCreate, ExpenseOut
 from app.services.expense_service import ExpenseService
 
 router = APIRouter(

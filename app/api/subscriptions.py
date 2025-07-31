@@ -4,7 +4,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
 from app.db.session import get_db  # or adjust if you're using app.dependencies
-from app.schemas.subscription_schemas import SubscriptionCreate, SubscriptionOut
+from app.schemas.subscription import SubscriptionCreate, SubscriptionOut
 from app.services.subscription_service import SubscriptionService
 
 router = APIRouter(

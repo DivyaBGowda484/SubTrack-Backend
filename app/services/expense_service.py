@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
-from app.models.expense_model import Expense
-from app.schemas.expense_schemas import ExpenseCreate
+from app.db.models.expense import Expense
+from app.schemas.expense import ExpenseCreate
 
 class ExpenseService:
     @staticmethod
