@@ -1,13 +1,14 @@
 # app/api/dashboard.py
 
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
-from app.db.session import get_db  # Ensure this points correctly to your DB session
-from app.services.dashboard_service import get_dashboard_data
+from app.db.session import get_db
+from app.services.dashboard_service import DashboardService
+from app.services.user_service import UserService
+from app.schemas.user import UserResponse
 
 router = APIRouter(
-    prefix="/dashboard",
     tags=["Dashboard"]
 )
 
@@ -16,4 +17,11 @@ def dashboard(db: Session = Depends(get_db)):
     """
     Endpoint to fetch dashboard data.
     """
-    return get_dashboard_data(db)
+    return DashboardService.get_dashboard_summary(db, 1)  # Temporary: use user_id 1
+
+@router.get("/summary", summary="Get dashboard summary", response_model=dict)
+def dashboard_summary(db: Session = Depends(get_db)):
+    """
+    Endpoint to fetch dashboard summary data.
+    """
+    return DashboardService.get_dashboard_summary(db, 1)  # Temporary: use user_id 1

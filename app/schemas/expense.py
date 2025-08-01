@@ -4,11 +4,11 @@ from datetime import date
 
 
 class ExpenseBase(BaseModel):
-    name: str
+    title: str
     amount: float
     date: date
-    category: Optional[str] = None
-    payment_method: Optional[str] = None
+    category: str
+    description: Optional[str] = None
 
 
 class ExpenseCreate(ExpenseBase):
@@ -16,11 +16,11 @@ class ExpenseCreate(ExpenseBase):
 
 
 class ExpenseUpdate(BaseModel):
-    name: Optional[str] = None
+    title: Optional[str] = None
     amount: Optional[float] = None
     date: Optional[date] = None
     category: Optional[str] = None
-    payment_method: Optional[str] = None
+    description: Optional[str] = None
 
 
 class ExpenseOut(ExpenseBase):
@@ -28,4 +28,4 @@ class ExpenseOut(ExpenseBase):
     user_id: int
 
     class Config:
-        orm_mode = True
+        from_attributes = True

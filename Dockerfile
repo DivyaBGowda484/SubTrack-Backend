@@ -10,6 +10,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
+# Make startup script executable
+RUN chmod +x start.sh
+
 ENV PYTHONPATH="/app"
 
-CMD PYTHONPATH="/app:${PYTHONPATH}" uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+CMD ["./start.sh"]
